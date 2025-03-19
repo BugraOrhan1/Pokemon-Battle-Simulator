@@ -1,31 +1,19 @@
-import { Charmander } from './charmander';
+import { Pokemon } from './pokemon';
 
-export class Pokeball {
-    private charmander: Charmander | null;
+export class Pokeball<T extends Pokemon> {
+    private pokemon: T | null;
 
-    constructor(charmander: Charmander | null = null) {
-        this.charmander = charmander;
+    constructor(pokemon: T) {
+        this.pokemon = pokemon;
     }
 
-    throw() {
-        if (this.charmander) {
-            console.log('Pokeball thrown!');
-            this.charmander.battlecry();
-            const releasedCharmander = this.charmander;
-            this.charmander = null;
-            return releasedCharmander;
-        } else {
-            console.log('Pokeball is empty!');
-            return null;
-        }
+    throw(): T | null {
+        const temp = this.pokemon;
+        this.pokemon = null;
+        return temp;
     }
 
-    return(charmander: Charmander) {
-        if (this.charmander === null) {
-            this.charmander = charmander;
-            console.log('Charmander returned to Pokeball!');
-        } else {
-            console.log('Pokeball already contains a Charmander!');
-        }
+    return(pokemon: T) {
+        this.pokemon = pokemon;
     }
 }

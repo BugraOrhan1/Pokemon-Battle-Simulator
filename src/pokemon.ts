@@ -6,7 +6,7 @@ interface PokemonInterface {
     attack: number;
 }
 
-export class Pokemon implements PokemonInterface {
+export class Pokemon {
     name: string;
     type: string;
     weakness: string;
